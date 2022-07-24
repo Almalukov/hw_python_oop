@@ -89,7 +89,7 @@ class SportsWalking(Training):
     def get_spent_calories(self):
             return ((self.A1 * self.weight
                 + (self.get_mean_speed()**2 // self.height)
-                * self.A3 * self.weight) * self.M_IN_H * self.duration)
+                   * self.A3 * self.weight) * self.M_IN_H * self.duration)
 
 
 class Swimming(Training):
@@ -124,7 +124,8 @@ def read_package(workout_type: str, data: list) -> Training:
     read: dict[str, Type[Training]] = {
              'RUN': Running,
              'SWM': Swimming,
-             'WLK': SportsWalking }
+             'WLK': SportsWalking, 
+    }
     if read.get(workout_type) is None:
         return None
     PACK_RE = read[workout_type](*data)
