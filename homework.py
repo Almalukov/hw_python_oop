@@ -88,8 +88,8 @@ class SportsWalking(Training):
 
     def get_spent_calories(self):
             return ((self.A1 * self.weight
-                + (self.get_mean_speed()**2 // self.height)
-                   * self.A3 * self.weight) * self.M_IN_H * self.duration)
+              + (self.get_mean_speed()**2 // self.height)
+               * self.A3 * self.weight) * self.M_IN_H * self.duration)
 
 
 class Swimming(Training):
