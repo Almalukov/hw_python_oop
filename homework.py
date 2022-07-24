@@ -1,7 +1,6 @@
 from typing import Type
 
 
-
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     def __init__(self, training_type: str,
@@ -130,14 +129,14 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     read: dict[str, Type[Training]] = {
-    'RUN': Running,
-    'SWM': Swimming,
-    'WLK': SportsWalking,
+              'RUN': Running,
+              'SWM': Swimming,
+              'WLK': SportsWalking,
     }
     if read.get(workout_type)  is None:
         return None
-    packre = read[workout_type](*data)
-    return packre
+    PACK_RE = read[workout_type](*data)
+    return PACK_RE
 
 
 def main(training: Training) -> None:
