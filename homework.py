@@ -90,7 +90,7 @@ class SportsWalking(Training):
         return (
             (self.A1 * self.weight +
             (self.get_mean_speed()**2 // self.height) *
-             self.A3 * self.weight) * self.M_IN_H * self.duration)
+            self.A3 * self.weight) * self.M_IN_H * self.duration)
 
 
 class Swimming(Training):
@@ -123,9 +123,9 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     read: dict[str, Type[Training]] = {
-             'RUN': Running,
-             'SWM': Swimming,
-             'WLK': SportsWalking, 
+            'RUN': Running,
+            'SWM': Swimming,
+            'WLK': SportsWalking, 
     }
     if read.get(workout_type) is None:
         return None
