@@ -68,8 +68,8 @@ class Running(Training):
 
     def get_spent_calories(self) -> float:
         CALL = ((self.coeff_calorie_1 * self.get_mean_speed()
-        - self.coeff_calorie_2) * self.weight
-        / self.M_IN_KM * self.duration * 60)
+                 - self.coeff_calorie_2) * self.weight
+                 / self.M_IN_KM * self.duration * 60)
         return CALL
 
 
@@ -121,9 +121,9 @@ class Swimming(Training):
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     read: dict[str, Type[Training]] = {
-              'RUN': Running,
-              'SWM': Swimming,
-              'WLK': SportsWalking,
+             'RUN': Running,
+             'SWM': Swimming,
+             'WLK': SportsWalking,
     }
     if read.get(workout_type) is None:
         return None
