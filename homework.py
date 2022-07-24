@@ -1,5 +1,5 @@
 from typing import Type
-from dataclasses import dataclass
+#from dataclasses import dataclass
 
 
 class InfoMessage:
@@ -29,28 +29,23 @@ class Training:
     LEN_STEP: float = 0.65
     M_IN_KM: int = 1000
     M_IN_H: int = 60
-    def __init__(self,
+    def __init__(
+                 self,
                  action: int,
                  duration: float,
                  weight: float,
                 ) -> None:
-            self.action: int = action
-            self.duration: float = duration
-            self.weight: float = weight     
-        
-
+        self.action: int = action
+        self.duration: float = duration
+        self.weight: float = weight  
     def get_distance(self) -> float:
         """Получить дистанцию в км."""
         distance = self.action * self.LEN_STEP / self.M_IN_KM
         return distance
-        
-
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         speed = self.get_distance() / self.duration
         return speed 
-        
-
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         pass
@@ -151,4 +146,3 @@ if __name__ == '__main__':
     for workout_type, data in packages:
         training = read_package(workout_type, data)
         main(training)
-
