@@ -29,8 +29,7 @@ class Training:
     M_IN_KM: int = 1000
     M_IN_H: int = 60
 
-    def __init__(
-                 self,
+    def __init__(self,
                  action: int,
                  duration: float,
                  weight: float,
@@ -68,7 +67,7 @@ class Running(Training):
     coeff_calorie_2: int = 20
 
     def get_spent_calories(self) -> float:
-        CALL = ((self.coeff_calorie_1 * self.get_mean_speed() 
+        CALL = ((self.coeff_calorie_1 * self.get_mean_speed()
         - self.coeff_calorie_2) * self.weight
         / self.M_IN_KM * self.duration * 60)
         return CALL
