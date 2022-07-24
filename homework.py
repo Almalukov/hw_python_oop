@@ -52,6 +52,7 @@ class Training:
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
         pass
+
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
         return InfoMessage(self.__class__.__name__,
@@ -59,6 +60,8 @@ class Training:
                            self.get_distance(),
                            self.get_mean_speed(),
                            self.get_spent_calories())
+
+
 class Running(Training):
     """Тренировка: бег."""
     coeff_calorie_1: int = 18
@@ -87,8 +90,7 @@ class SportsWalking(Training):
     def get_spent_calories(self):
             return ((self.A1 * self.weight +
                    (self.get_mean_speed()**2 // self.height) *
-                   self.A3 * self.weight) * self.M_IN_H * self.duration)
-
+                    self.A3 * self.weight) * self.M_IN_H * self.duration)
 
 
 class Swimming(Training):
@@ -109,12 +111,12 @@ class Swimming(Training):
 
     def get_distance(self) -> float:
         return self.LEN_STEP * self.action / self.M_IN_KM
+    
     def get_mean_speed(self):
         return self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+    
     def get_spent_calories(self) -> float:
         return (self.get_mean_speed() + self.B1) * self.B2 * self.weight
-
-
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
@@ -123,11 +125,10 @@ def read_package(workout_type: str, data: list) -> Training:
               'SWM': Swimming,
               'WLK': SportsWalking,
     }
-    if read.get(workout_type)  is None:
+    if read.get(workout_type) is None:
         return None
     PACK_RE = read[workout_type](*data)
     return PACK_RE
-
 
 def main(training: Training) -> None:
     """Главная функция."""
