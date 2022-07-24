@@ -116,15 +116,12 @@ class Swimming(Training):
     
     def get_distance(self) -> float:
         return self.LEN_STEP * self.action / self.M_IN_KM
-    
     def get_mean_speed(self):
         return self.length_pool * self.count_pool / self.M_IN_KM / self.duration  
-    
     def get_spent_calories(self) -> float:
         return (self.get_mean_speed() + self.B1) * self.B2 * self.weight
         
         
-
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
