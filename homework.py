@@ -1,6 +1,8 @@
 from typing import Type
 from dataclasses import dataclass
 
+
+@dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
     def __init__(self, training_type: str,
