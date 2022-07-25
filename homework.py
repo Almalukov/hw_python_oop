@@ -1,5 +1,5 @@
 from typing import Type
-
+from dataclasses import dataclass
 
 class InfoMessage:
     """Информационное сообщение о тренировке."""
@@ -50,7 +50,7 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        pass
+        raise NotImplementedError
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -63,14 +63,16 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    coeff_calorie_1: int = 18
-    coeff_calorie_2: int = 20
+    CALORIES_MEAN_SPEED_MULTIPLIER: int = 18
+    CALORIES_MEAN_SPEED_MULTIPLIER_2: int = 20
 
     def get_spent_calories(self) -> float:
-        CALL = ((self.coeff_calorie_1 * self.get_mean_speed()
-                - self.coeff_calorie_2) * self.weight
+        call = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
+                * self.get_mean_speed()
+                - self.CALORIES_MEAN_SPEED_MULTIPLIER_2)
+                * self.weight
                 / self.M_IN_KM * self.duration * 60)
-        return CALL
+        return call
 
 
 class SportsWalking(Training):
@@ -128,7 +130,7 @@ def read_package(workout_type: str, data: list) -> Training:
         'WLK': SportsWalking,
     }
     if read.get(workout_type) is None:
-        return None
+        return KeyError
     PACK_RE = read[workout_type](*data)
     return PACK_RE
 
