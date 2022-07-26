@@ -69,12 +69,12 @@ class Running(Training):
     CALORIES_MEAN_SPEED_MULTIPLIER_2: int = 20
 
     def get_spent_calories(self) -> float:
-        calories_s = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
-                * self.get_mean_speed()
-                - self.CALORIES_MEAN_SPEED_MULTIPLIER_2)
-                * self.weight
-                / self.M_IN_KM * self.duration * 60)
-        return calories_s
+        calories_run = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
+                        * self.get_mean_speed()
+                        - self.CALORIES_MEAN_SPEED_MULTIPLIER_2)
+                        * self.weight
+                        / self.M_IN_KM * self.duration * 60)
+        return calories_run
 
 
 class SportsWalking(Training):
