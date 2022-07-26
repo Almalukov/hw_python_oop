@@ -52,7 +52,7 @@ class Training:
 
     def get_spent_calories(self) -> float:
         """Получить количество затраченных калорий."""
-        raise NotImplementedError
+        raise NotImplementedError('Метод не унаследован')
 
     def show_training_info(self) -> InfoMessage:
         """Вернуть информационное сообщение о выполненной тренировке."""
@@ -69,12 +69,12 @@ class Running(Training):
     CALORIES_MEAN_SPEED_MULTIPLIER_2: int = 20
 
     def get_spent_calories(self) -> float:
-        call = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
+        calories_s = ((self.CALORIES_MEAN_SPEED_MULTIPLIER
                 * self.get_mean_speed()
                 - self.CALORIES_MEAN_SPEED_MULTIPLIER_2)
                 * self.weight
                 / self.M_IN_KM * self.duration * 60)
-        return call
+        return calories_s
 
 
 class SportsWalking(Training):
