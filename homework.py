@@ -131,10 +131,10 @@ def read_package(workout_type: str, data: list) -> Training:
         'SWM': Swimming,
         'WLK': SportsWalking,
     }
-    if read.get(workout_type) is None:
-        return KeyError
-    PACK_RE = read[workout_type](*data)
-    return PACK_RE
+    try:
+        return read[workout_type](*data)
+    except KeyError:
+        raise KeyError(f'Неизвестный код тренировки - {workout_type}')
 
 
 def main(training: Training) -> None:
